@@ -6,10 +6,11 @@
 /**
  * @brief Structure representing a parser for InterQL queries.
  */
-typedef struct Parser {
-    char **tokens;      ///< Array of tokens from the input string
-    int token_count;    ///< Number of tokens
-    int position;       ///< Current position in the token array
+typedef struct Parser
+{
+    char **tokens;   ///< Array of tokens from the input string
+    int token_count; ///< Number of tokens
+    int position;    ///< Current position in the token array
 } Parser;
 
 /**
