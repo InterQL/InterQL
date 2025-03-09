@@ -1,0 +1,31 @@
+InterQL
+=======
+
+Overview
+--------
+InterQL is an SQL-like query language server designed for retrieving information about content on the internet. It provides a structured interface for querying and extracting data from online sources, leveraging a custom parsing engine to process user-defined requests.
+
+TODO
+----
+- [x] Parsing Engine: Implemented core functionality for parsing SQL-like queries
+- [ ] Data Retrieval: Integrate mechanisms for fetching and processing internet content
+
+Status
+------
+The project is actively under development. The parsing engine is complete, enabling support for query interpretation. Future work will focus on implementing data retrieval capabilities.
+
+Usage
+-----
+Currently, InterQL can parse queries such as "VERIFY ssl.cert.issuer contains 'Let''s Encrypt' in example.com". To build and test the parser:
+1. Run `make` to compile the InterQL binary.
+2. Execute `./InterQL` to see the parsed output of a sample query.
+
+See queries.txt file for other types of supported requests.
+
+Contributing
+------------
+Contributions are welcome! Please submit issues or pull requests to the project repository (TBD).
+
+License
+-------
+InterQL is released under GNU General Public License (GPL) v3.

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# File to log everything
+LOG_FILE="build.log"
+
+make clean
+
+# Function to get current timestamp in seconds with nanoseconds
+get_timestamp() {
+    date +%s.%N
+}
+
+# Clear the log file at the start
+echo "Build started at $(date)" > "$LOG_FILE"
+
+# Start the timer
+START_TIME=$(get_timestamp)
+echo "Timer started at $START_TIME" >> "$LOG_FILE"
+
+# Run make and capture all output (stdout and stderr) to the log file
+echo "Running 'make'..." >> "$LOG_FILE"
+make 2>&1 | tee -a "$LOG_FILE"
+
+# Check if make succeeded
+MAKE_STATUS=${PIPESTATUS[0]}
+if [ $MAKE_STATUS -eq 0 ]; then
+    echo "Make completed successfully" >> "$LOG_FILE"
+else
+    echo "Make failed with status $MAKE_STATUS" >> "$LOG_FILE"
+fi
+
+# End the timer
+END_TIME=$(get_timestamp)
+echo "Timer stopped at $END_TIME" >> "$LOG_FILE"
+
+# Calculate elapsed time
+ELAPSED_TIME=$(echo "$END_TIME - $START_TIME" | bc)
+echo "Elapsed time: $ELAPSED_TIME seconds" >> "$LOG_FILE"
+
+echo "Build finished at $(date)" >> "$LOG_FILE"
+echo "See $LOG_FILE for details"

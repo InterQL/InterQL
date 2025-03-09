@@ -1,0 +1,37 @@
+[default@interql] > 
+// uses default (our) server
+
+[interql.example.com@interql] > 
+// uses server provided by another company
+
+request dns, ip.asn from example.com;
+
+request dns, ssl.cert.issuer from (example.com, example1.com, example2.com);
+
+request version;
+
+request domains from 8.8.8.8;
+
+request ip.range from 8.8.8.8;
+
+request whois from example.com;
+
+request dns.txt from example.com;
+
+request dns.txt from example.com where dns.txt contains "v=spf1";
+
+request ssl.cert.expiry from example.com where ssl.cert.expiry < NOW();
+
+request open_ports from example.com limit 3;
+
+request meta.description, meta.keywords from example.com;
+
+extract text from example.com where http.body contains "Terms of Service";
+
+verify dns.ns == "ns.example.com" in example.com;
+
+verify ssl.cert.issuer contains "Let's Encrypt" in example.com;
+
+verify http.redirects_to == "https://example.com" in example.com;
+
+verify http.body contains "UA-" in example.com;
